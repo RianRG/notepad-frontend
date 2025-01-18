@@ -18,7 +18,6 @@ export class HomeComponent {
   }
 
   ngOnInit(): void{
-
   }
 
   onSubmit(){
