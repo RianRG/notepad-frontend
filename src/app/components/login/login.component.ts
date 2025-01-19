@@ -35,7 +35,8 @@ export class LoginComponent {
         next: r => this.router.navigateByUrl('/main'),
         error: e=> {
           if(!this.errorClass){
-            this.errorMsg = e.error.message
+            console.log(e)
+            this.errorMsg = e.statusText
             this.errorClass = true;
           }
         }

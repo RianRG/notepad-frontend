@@ -9,14 +9,15 @@ import { Router } from '@angular/router';
   styleUrl: './main.component.css'
 })
 export class MainComponent {
+  studentId!: string;
   constructor(private http: HttpService, private router: Router){};
 
 
 
   ngOnInit(): void{
-    this.http.getSession().subscribe({
-      next: msg => console.log(msg),
-      error: err => this.router.navigateByUrl('register')
+    this.http.getSession().subscribe((msg: any) => {
+      this.studentId = msg.student.id
+      console.log(this.studentId)
     })
   }
 }
