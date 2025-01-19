@@ -15,9 +15,8 @@ export class MainComponent {
 
 
   ngOnInit(): void{
-    this.http.getSession().subscribe({
-      next: (msg: any) => this.studentId = msg.student.id,
-      error: () => this.router.navigateByUrl('/login')
+    this.http.getSession().subscribe((msg: any) =>{
+      this.studentId = msg.student.id
     })
   }
 }
