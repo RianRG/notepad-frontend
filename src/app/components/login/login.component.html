@@ -3,12 +3,9 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
 
-  <input type="text" formControlName="username" required>
-  <label for="username">Username</label> 
   <input type="text" formControlName="email" required>
   <label for="email">Email</label> 
   <input type="password" formControlName="password" required>
   <label for="password">Password</label> 
-  <p>Already have an account? <a routerLink="/login">Log In</a></p>
-  <button action="submit">Register</button>
+  <button action="submit">Login</button>
 </form>
