@@ -1,4 +1,8 @@
+<div class="loading"></div>
+<span [class.active]="errorClass">{{ errorMsg }}</span>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+
   <input type="text" formControlName="username" required>
   <label for="username">Username</label> 
   <input type="text" formControlName="email" required>
