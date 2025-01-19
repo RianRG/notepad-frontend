@@ -17,7 +17,6 @@ export class MainComponent {
   ngOnInit(): void{
     this.http.getSession().subscribe((msg: any) => {
       this.studentId = msg.student.id
-      console.log(this.studentId)
     })
   }
 }
