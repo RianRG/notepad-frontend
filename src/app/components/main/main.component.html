@@ -1,8 +1,8 @@
 <span [class.active]="formClass">
   <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
     <button type="button" (click)="toggleForm()"><i class='bx bx-x'></i></button>
-    <input type="text" formControlName="title" required>
-    <textarea formControlName="content" required></textarea>
+    <input type="text" formControlName="title" required placeholder="Title...">
+    <textarea formControlName="content" required placeholder="Content..."></textarea>
     <input type="checkbox" formControlName="isPrivate">
     <button type="submit">send</button>
   </form> 
@@ -11,7 +11,7 @@
 <span class="notesContainer">
   @for(note of notes; track note.id){
     <aside class="noteContainer">
-      <h1>{{ note.title }}</h1>
+      <h3>{{ note.title }}</h3>
       <p>{{ note.content }}</p>
       <p>{{ note.createdAt | date: 'dd/MM/yyyy' }}</p>
     </aside>

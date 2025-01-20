@@ -16,7 +16,7 @@ span:first-child{
 }
 
 span.active{
-  padding: 40px;
+  padding: 20px;
   pointer-events: all;
   opacity: 1;
   width: 700px;
@@ -30,16 +30,38 @@ form{
   flex-direction: column;
   gap: 20px;
   position: relative;
+  width: 100%;
+}
+
+form ::placeholder{
+  font-weight: 800;
 }
 
 textarea{
   resize: none;
   height: 400px;
-  width: 600px;
+  width: 100%;
   outline: none;
   padding: 20px;
   background-color: rgba(245, 231, 205, 0.774);
   border-radius: 20px;
+}
+
+textarea::-webkit-scrollbar {
+  width: 12px; /* Largura da barra de rolagem */
+}
+
+textarea::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Cor do fundo da barra de rolagem */
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: #888; /* Cor do "thumb" (parte móvel) */
+  border-radius: 10px; /* Arredondamento do "thumb" */
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Cor do "thumb" ao passar o mouse */
 }
 
 form input{
@@ -83,8 +105,7 @@ main{
   display: grid;
   grid-template-columns: repeat(4, 1fr); 
   grid-gap: 20px;
-  margin-top: 1000px;
-  padding: 40px 0;
+  padding: 20px;
 }
 
 .noteContainer{
@@ -92,4 +113,41 @@ main{
   border-radius: 10px;
   padding: 10px;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  -webkit-box-orient: vertical;
+  line-clamp: 3; 
+  overflow: hidden;
+  transition: .4s;
+}
+
+.noteContainer:hover{
+  box-shadow: 0px 5px rgb(212, 182, 182);
+}
+
+.noteContainer p, .noteContainer h3{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+@media(max-width: 810px){
+  span:first-child{
+    width: 80%;
+  }
+}
+
+@media(max-width: 587px){
+  span:first-child form input{
+    font-size: 1.2rem;
+  }
+  span:first-child form textarea{
+    font-size: .8rem;
+  }
+  span:first-child{
+    width: 90%;
+    left: 20px;
+  }
 }

@@ -38,6 +38,9 @@ export class MainComponent {
   }
 
   onSubmit(){
+
+    
+
     this.notes.push(this.noteForm.value)
     this.http.registerNote(this.noteForm.value).subscribe(m =>{
       console.log(m)
