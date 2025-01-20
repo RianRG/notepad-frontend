@@ -1,0 +1,23 @@
+.formContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background-color: red;
+}
+
+form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  width: 400px;
+}
+
+textarea{
+  resize: none;
+  height: 400px;
+  width: 400px;
+  outline: none;
+}

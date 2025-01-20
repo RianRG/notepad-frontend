@@ -9,6 +9,12 @@ interface RegisterStudentDTO{
   password: string
 }
 
+interface RegisterNoteDTO{
+  title: string,
+  content: string,
+  isPrivate: boolean
+}
+
 interface LoginStudentDTO{
   email: string,
   password: string
@@ -45,5 +51,13 @@ export class HttpService {
 
   loginStudent({ email, password }: LoginStudentDTO){
     return this.http.post(`${environment.apiUrl}/login`, { email, password }, { withCredentials: true })
+  }
+
+  registerNote({ title, content, isPrivate }: RegisterNoteDTO){
+    return this.http.post(`${environment.apiUrl}/notes/register`, { title, content, isPrivate }, { withCredentials: true })
+  }
+
+  getNotes(){
+    return this.http.get(`${environment.apiUrl}/notes`, { withCredentials: true })
   }
 }
