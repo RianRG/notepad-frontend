@@ -2,23 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from '../../../environment';
-
-interface RegisterStudentDTO{
-  username: string,
-  email: string,
-  password: string
-}
-
-interface RegisterNoteDTO{
-  title: string,
-  content: string,
-  isPrivate: boolean
-}
-
-interface LoginStudentDTO{
-  email: string,
-  password: string
-}
+import { RegisterStudentDTO, LoginStudentDTO, RegisterNoteDTO } from '../types/requestDTO';
+import { GetNotesDTO } from '../types/responseDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -57,7 +42,7 @@ export class HttpService {
     return this.http.post(`${environment.apiUrl}/notes/register`, { title, content, isPrivate }, { withCredentials: true })
   }
 
-  getNotes(){
-    return this.http.get(`${environment.apiUrl}/notes`, { withCredentials: true })
+  getNotes(): Observable<GetNotesDTO[]>{
+    return this.http.get<GetNotesDTO[]>(`${environment.apiUrl}/notes`, { withCredentials: true })
   }
 }

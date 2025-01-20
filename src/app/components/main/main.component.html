@@ -9,8 +9,12 @@
 </span>
 
 <span class="notesContainer">
-  @for(note of notes; track note){
-    <h1>{{ note.content }}</h1>
+  @for(note of notes; track note.id){
+    <aside class="noteContainer">
+      <h1>{{ note.title }}</h1>
+      <p>{{ note.content }}</p>
+      <p>{{ note.createdAt | date: 'dd/MM/yyyy' }}</p>
+    </aside>
   }
 </span>
 <button class="showForm" (click)="toggleForm()">add</button>

@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { HttpService } from '../../services/http.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { GetNotesDTO } from '../../types/responseDTO';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-main',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, DatePipe],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
@@ -13,7 +15,7 @@ export class MainComponent {
   studentId!: string;
   noteForm!: FormGroup
   formClass: boolean = false;
-  notes: any = [];
+  notes: GetNotesDTO[] = [];
   constructor(private http: HttpService, private router: Router, private fb: FormBuilder){
     this.noteForm = this.fb.group({
       title: ['', Validators.required],
