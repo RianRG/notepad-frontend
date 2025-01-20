@@ -1,9 +1,10 @@
-<span class="formContainer">
+<span [class.active]="formClass">
   <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
+    <button type="button" (click)="toggleForm()"><i class='bx bx-x'></i></button>
     <input type="text" formControlName="title" required>
     <textarea formControlName="content" required></textarea>
     <input type="checkbox" formControlName="isPrivate">
-    <button action="submit">send</button>
+    <button type="submit">send</button>
   </form> 
 </span>
 
@@ -12,3 +13,4 @@
     <h1>{{ note.content }}</h1>
   }
 </span>
+<button class="showForm" (click)="toggleForm()">add</button>

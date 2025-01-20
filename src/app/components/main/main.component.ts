@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class MainComponent {
   studentId!: string;
   noteForm!: FormGroup
+  formClass: boolean = false;
   notes: any = [];
   constructor(private http: HttpService, private router: Router, private fb: FormBuilder){
     this.noteForm = this.fb.group({
@@ -35,8 +36,13 @@ export class MainComponent {
   }
 
   onSubmit(){
+    this.notes.push(this.noteForm.value)
     this.http.registerNote(this.noteForm.value).subscribe(m =>{
       console.log(m)
     })
+  }
+
+  toggleForm(){
+    this.formClass = !this.formClass;
   }
 }
