@@ -19,7 +19,7 @@ export class MainComponent {
   noteForm!: FormGroup
   formClass: boolean = false;
   notes: GetNoteDTO[] = [];
-  currentNodeId!: string | null;
+  currentNoteId!: string | null;
   constructor(private http: HttpService, private router: Router, private fb: FormBuilder){
     this.noteForm = this.fb.group({
       title: ['', Validators.required],
@@ -42,10 +42,10 @@ export class MainComponent {
 
   onSubmit(){
     this.loadingService.setLoading(true)
-    if(this.currentNodeId){
-      this.http.updateNode(this.currentNodeId, this.noteForm.value).subscribe((r: any) =>{
+    if(this.currentNoteId){
+      this.http.updateNode(this.currentNoteId, this.noteForm.value).subscribe((r: any) =>{
         this.notes = this.notes.map(note =>{
-          if(note.id === this.currentNodeId){
+          if(note.id === this.currentNoteId){
             return {
               id: note.id,
               title: this.noteForm.value.title,
@@ -56,7 +56,7 @@ export class MainComponent {
           } 
           return note;
         })
-        this.currentNodeId = null;
+        this.currentNoteId = null;
       })
     } else{
       this.http.registerNote(this.noteForm.value).subscribe((r: any) =>{
@@ -94,6 +94,20 @@ export class MainComponent {
     this.noteForm.get('title')?.setValue(note.title)
     this.noteForm.get('content')?.setValue(note.content)
     if(note.isPrivate === 'true') this.noteForm.get('isPrivate')?.setValue(true)
-    this.currentNodeId = note.noteId;
+    this.currentNoteId = note.noteId;
+  }
+
+  deleteNote(){
+    this.loadingService.setLoading(true)
+    console.log(this.currentNoteId)
+    this.http.deleteNote(this.currentNoteId!).subscribe((r: any) =>{
+      const noteIndex = this.notes.findIndex(note =>{
+        return note.id === this.currentNoteId
+      })
+
+      this.notes.splice(noteIndex, 1);
+    })
+    this.formClass = !this.formClass
+    this.loadingService.setLoading(false)
   }
 }

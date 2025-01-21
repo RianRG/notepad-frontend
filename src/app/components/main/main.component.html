@@ -1,15 +1,20 @@
 <span [class.active]="formClass" class="formContainer">
   <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
     <button type="button" (click)="toggleForm()"><i class='bx bx-x'></i></button>
+    <button type="button" (click)="deleteNote()"><i class='bx bxs-trash'></i></button>
     <input type="text" formControlName="title" required placeholder="Title...">
     <textarea formControlName="content" required placeholder="Content..."></textarea>
-    <input type="checkbox" formControlName="isPrivate">
-    <button type="submit">send</button>
+    <div class="checkbox-wrapper-2">
+      <label for="isPrivate">Is Private?</label>
+      <input type="checkbox" class="sc-gJwTLC ikxBAC" formControlName="isPrivate">
+    </div>
+    
+    <button type="submit" class="submitButton">Send</button>
   </form> 
 </span>
 
 <nav>
-  <h1>{{ studentInfos.username }}</h1>
+  <h1>{{ studentInfos.username }}</h1>  
 </nav>
 
 <span class="notesContainer">

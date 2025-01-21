@@ -49,4 +49,8 @@ export class HttpService {
   updateNode(noteId: string, { title, content, isPrivate }: RegisterNoteDTO): Observable<GetNoteDTO>{
     return this.http.put<GetNoteDTO>(`${environment.apiUrl}/notes/${noteId}`, { title, content, isPrivate }, { withCredentials: true })
   }
+
+  deleteNote(noteId: string){
+    return this.http.delete(`${environment.apiUrl}/notes/${noteId}`, { withCredentials: true })
+  }
 }
