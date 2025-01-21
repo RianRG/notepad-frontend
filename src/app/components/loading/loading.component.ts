@@ -11,7 +11,7 @@ export class LoadingComponent {
   isLoading = false;
 
   constructor(private loadingService: LoadingService) {
-    this.loadingService.loading$.subscribe(loading => {
+    this.loadingService.loading.subscribe(loading => {
       this.isLoading = loading;
     });
   }

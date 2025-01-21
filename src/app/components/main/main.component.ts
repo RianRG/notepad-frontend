@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { HttpService } from '../../services/http.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { GetNoteDTO } from '../../types/responseDTO';
 import { DatePipe } from '@angular/common';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-main',
@@ -12,6 +13,8 @@ import { DatePipe } from '@angular/common';
   styleUrl: './main.component.css'
 })
 export class MainComponent {
+  loadingService = inject(LoadingService)
+
   studentId!: string;
   noteForm!: FormGroup
   formClass: boolean = false;
@@ -38,6 +41,7 @@ export class MainComponent {
   }
 
   onSubmit(){
+    this.loadingService.setLoading(true)
     if(this.currentNodeId){
       this.http.updateNode(this.currentNodeId, this.noteForm.value).subscribe((r: any) =>{
         this.notes = this.notes.map(note =>{
@@ -65,6 +69,10 @@ export class MainComponent {
         })
       })
     } 
+    this.formClass = !this.formClass
+    setTimeout(() =>{
+      this.loadingService.setLoading(false);
+    }, 400)
   }
 
   toggleForm(){
