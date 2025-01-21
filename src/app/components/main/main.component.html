@@ -26,6 +26,11 @@
       <div class="isPrivate">{{ note.isPrivate }}</div>
       <div class="noteId">{{ note.id }}</div>
     </aside>
+  } @empty{
+    <div class="emptyNotes">
+      <h2>You don't have any notes...</h2>
+      <p (click)="toggleForm()">Want to register something?</p>
+    </div>
   }
 </span>
-<button class="showForm" (click)="toggleForm()">add</button>
+<button class="showForm" (click)="toggleForm()"><i class='bx bx-pencil'></i></button>

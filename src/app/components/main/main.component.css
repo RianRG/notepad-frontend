@@ -136,7 +136,7 @@ main{
   line-clamp: 3; 
   overflow: hidden;
   transition: .4s;
-  min-width: 150px;
+  min-width: 250px;
 }
 
 .noteContainer .isPrivate, .noteContainer .noteId{
@@ -168,6 +168,62 @@ nav{
   left: 0;
   width: 100%;
   background-color: grey;
+}
+
+.showForm{
+  outline: none;
+  border: none;
+  border-radius: 30px;
+  padding: 15px;
+  cursor: pointer;
+  background-color: rgba(245, 231, 205, 0.774);
+  transition: .4s;
+}
+
+.showForm:hover i{
+  rotate: 20deg;
+}
+
+.showForm:hover{
+  margin-bottom: 10px;
+  box-shadow: 0 5px rgb(118, 101, 101);
+}
+
+.emptyNotes{
+  width: 100%;
+  position: fixed;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.emptyNotes p{
+  cursor: pointer;
+  transition: .4s;
+}
+.emptyNotes p::after{
+  transition: .4s;
+  content: '';
+  display: block;
+  background-color: orangered;
+  height: 1.5px;
+  width: 10%;
+}
+.emptyNotes p:hover::after{
+  width: 50%;
+}
+
+
+.showForm i{
+  font-size: 1.4rem;
+  color: white;
+  transition: .4s;
 }
 
 /* checkbox copied from "https://getcssscan.com/css-checkboxes-examples" */
