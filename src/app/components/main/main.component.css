@@ -148,6 +148,11 @@ main{
   color: grey;
 }
 
+nav{
+  position: fixed;
+  top: 0;
+}
+
 
 @media(max-width: 810px){
   span:first-child{

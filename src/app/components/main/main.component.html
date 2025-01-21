@@ -1,4 +1,4 @@
-<span [class.active]="formClass">
+<span [class.active]="formClass" class="formContainer">
   <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
     <button type="button" (click)="toggleForm()"><i class='bx bx-x'></i></button>
     <input type="text" formControlName="title" required placeholder="Title...">
@@ -7,6 +7,10 @@
     <button type="submit">send</button>
   </form> 
 </span>
+
+<nav>
+  <h1>{{ studentInfos.username }}</h1>
+</nav>
 
 <span class="notesContainer">
   @for(note of notes; track note.id){

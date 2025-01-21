@@ -15,7 +15,7 @@ import { LoadingService } from '../../services/loading.service';
 export class MainComponent {
   loadingService = inject(LoadingService)
 
-  studentId!: string;
+  studentInfos!: any;
   noteForm!: FormGroup
   formClass: boolean = false;
   notes: GetNoteDTO[] = [];
@@ -32,7 +32,7 @@ export class MainComponent {
   
   ngOnInit(): void{
     this.http.getSession().subscribe((msg: any) =>{
-      this.studentId = msg.student.id
+      this.studentInfos = msg.student
     })
 
     this.http.getNotes().subscribe((msg: any) =>{
@@ -60,7 +60,7 @@ export class MainComponent {
       })
     } else{
       this.http.registerNote(this.noteForm.value).subscribe((r: any) =>{
-        this.notes.push({
+        this.notes.unshift({
           id: r.notes.id,
           title: this.noteForm.value.title,
           content: this.noteForm.value.content,
@@ -72,7 +72,7 @@ export class MainComponent {
     this.formClass = !this.formClass
     setTimeout(() =>{
       this.loadingService.setLoading(false);
-    }, 400)
+    }, 200)
   }
 
   toggleForm(){
@@ -93,7 +93,7 @@ export class MainComponent {
 
     this.noteForm.get('title')?.setValue(note.title)
     this.noteForm.get('content')?.setValue(note.content)
-    if(note.isPrivate === 'true') this.noteForm.get('isPrivate')?.setValue(note.isPrivate)
+    if(note.isPrivate === 'true') this.noteForm.get('isPrivate')?.setValue(true)
     this.currentNodeId = note.noteId;
   }
 }
