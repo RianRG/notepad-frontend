@@ -5,8 +5,9 @@ span:first-child{
   padding: 0;
   position: fixed;
   background-color: rgba(246, 222, 176, 0.822);
-  top: 40px;
-  left: 10%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 0;
   transition: .4s;
   opacity: 0;
@@ -71,6 +72,7 @@ form input{
   outline: none;
   padding: 5px 8px;
   font-size: 2rem;
+  width: 100%;
 }
 
 span:first-child .bx-x{
@@ -137,6 +139,22 @@ main{
   span:first-child{
     width: 80%;
   }
+
+  .notesContainer{
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .noteContainer h3{
+    font-size: .9rem;
+  }
+
+  .noteContainer p{
+    font-size: .7rem;
+  }
+
+  .noteContainer p:nth-child(2){
+    color: grey;
+  }
 }
 
 @media(max-width: 587px){
@@ -148,6 +166,9 @@ main{
   }
   span:first-child{
     width: 90%;
-    left: 20px;
+  }
+
+  .notesContainer{
+    grid-template-columns: repeat(2, 1fr);
   }
 }
