@@ -20,6 +20,9 @@ export class MainComponent {
   formClass: boolean = false;
   notes: GetNoteDTO[] = [];
   currentNoteId!: string | null;
+  popupClass: boolean = false;
+  overlayClass: boolean = false;
+
   constructor(private http: HttpService, private router: Router, private fb: FormBuilder){
     this.noteForm = this.fb.group({
       title: ['', Validators.required],
@@ -45,6 +48,7 @@ export class MainComponent {
     if(this.currentNoteId){
       this.http.updateNode(this.currentNoteId, this.noteForm.value).subscribe((r: any) =>{
         this.notes = this.notes.map(note =>{
+          console.log(this.currentNoteId)
           if(note.id === this.currentNoteId){
             return {
               id: note.id,
@@ -68,6 +72,7 @@ export class MainComponent {
           createdAt: new Date(),
         })
       })
+      this.currentNoteId = null;
     } 
     this.formClass = !this.formClass
     setTimeout(() =>{
@@ -80,6 +85,7 @@ export class MainComponent {
     this.noteForm.get('title')?.setValue('')
     this.noteForm.get('content')?.setValue('')
     this.noteForm.get('isPrivate')?.setValue(false)
+    this.currentNoteId = null;
   }
 
   editNote(event: any){
@@ -99,15 +105,25 @@ export class MainComponent {
 
   deleteNote(){
     this.loadingService.setLoading(true)
-    console.log(this.currentNoteId)
-    this.http.deleteNote(this.currentNoteId!).subscribe((r: any) =>{
-      const noteIndex = this.notes.findIndex(note =>{
-        return note.id === this.currentNoteId
-      })
 
+    // saving currentNoteId on a temporary variable because of context conflicts
+    const currentNoteId = this.currentNoteId;
+
+    this.http.deleteNote(this.currentNoteId!).subscribe((r: any) =>{
+      const noteIndex = this.notes.findIndex((note) =>{
+        return note.id === currentNoteId
+      })
       this.notes.splice(noteIndex, 1);
     })
     this.formClass = !this.formClass
+    this.popupClass = !this.popupClass
+    this.overlayClass = !this.overlayClass
+    this.currentNoteId = null;
     this.loadingService.setLoading(false)
+  }
+
+  togglePopup(){
+    this.popupClass = !this.popupClass
+    this.overlayClass = !this.overlayClass
   }
 }

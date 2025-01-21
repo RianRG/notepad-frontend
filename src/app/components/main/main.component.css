@@ -299,7 +299,7 @@ nav{
   gap: 5px;
 }
 
-.submitButton{
+.submitButton, .popupContainer aside button{
   outline: none;
   border: 2px solid black;
   background-color: transparent;
@@ -310,10 +310,71 @@ nav{
   transition: .4s;
 }
 
-.submitButton:hover{
+.submitButton:hover, .popupContainer aside button:hover{
   letter-spacing: 5px;
 }
 
+.popupContainer.popup{
+  opacity: 1;
+  height: 150px;
+  padding: 40px;
+  pointer-events: all;
+}
+
+.unactiveOverlay.overlay{
+  pointer-events: all;
+  opacity: 1;
+}
+
+.unactiveOverlay{
+  position: fixed;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.342);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: .4s;
+}
+
+.popupContainer{
+  position: fixed;
+  pointer-events: none;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  transition: .4s;
+  z-index: 1001;
+  opacity: 0;
+  width: 400px;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: transparent;
+  backdrop-filter: blur(3px) brightness(80%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 10px;
+}
+
+.popupContainer aside{
+  display: flex;
+  gap: 40px;
+}
+
+.popupContainer aside button{
+  border: 2px solid white;
+}
+
+.popupContainer *{
+  color: white;
+}
 
 @media(max-width: 810px){
   span:first-child{
@@ -324,12 +385,20 @@ nav{
     grid-template-columns: repeat(3, 1fr);
   }
 
+  .noteContainer{
+    min-width: 150px;
+  }
+
   .noteContainer h3{
     font-size: .9rem;
   }
 
   .noteContainer p{
     font-size: .7rem;
+  }
+
+  span:first-child form button i{
+    font-size: 1.7rem;
   }
 }
 
@@ -346,5 +415,16 @@ nav{
 
   .notesContainer{
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .popupContainer{
+    width: 95%;
+  }
+  .popupContainer h3{
+    font-size: .9rem;
+  }
+
+  .emptyNotes h2{
+    font-size: 1.2rem;
   }
 }

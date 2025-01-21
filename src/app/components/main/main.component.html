@@ -1,7 +1,7 @@
 <span [class.active]="formClass" class="formContainer">
   <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
     <button type="button" (click)="toggleForm()"><i class='bx bx-x'></i></button>
-    <button type="button" (click)="deleteNote()"><i class='bx bxs-trash'></i></button>
+    <button type="button" (click)="togglePopup()"><i class='bx bxs-trash'></i></button>
     <input type="text" formControlName="title" required placeholder="Title...">
     <textarea formControlName="content" required placeholder="Content..."></textarea>
     <div class="checkbox-wrapper-2">
@@ -16,6 +16,16 @@
 <nav>
   <h1>{{ studentInfos.username }}</h1>  
 </nav>
+
+<aside class="popupContainer" [class.popup]="popupClass">
+  <h3>Do u really want to delete me? :(</h3>
+  <aside>
+    <button (click)="deleteNote()">Yes</button>
+    <button (click)="togglePopup()">No</button>
+  </aside>
+</aside>
+<div class="unactiveOverlay" [class.overlay]="overlayClass"></div>
+
 
 <span class="notesContainer">
   @for(note of notes; track note.id){
