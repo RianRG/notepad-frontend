@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from '../../../environment';
 import { RegisterStudentDTO, LoginStudentDTO, RegisterNoteDTO } from '../types/requestDTO';
-import { GetNotesDTO } from '../types/responseDTO';
+import { GetNoteDTO } from '../types/responseDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +42,11 @@ export class HttpService {
     return this.http.post(`${environment.apiUrl}/notes/register`, { title, content, isPrivate }, { withCredentials: true })
   }
 
-  getNotes(): Observable<GetNotesDTO[]>{
-    return this.http.get<GetNotesDTO[]>(`${environment.apiUrl}/notes`, { withCredentials: true })
+  getNotes(): Observable<GetNoteDTO[]>{
+    return this.http.get<GetNoteDTO[]>(`${environment.apiUrl}/notes`, { withCredentials: true })
+  }
+
+  updateNode(noteId: string, { title, content, isPrivate }: RegisterNoteDTO): Observable<GetNoteDTO>{
+    return this.http.put<GetNoteDTO>(`${environment.apiUrl}/notes/${noteId}`, { title, content, isPrivate }, { withCredentials: true })
   }
 }

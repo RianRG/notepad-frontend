@@ -1,4 +1,4 @@
-export interface GetNotesDTO{
+export interface GetNoteDTO{
   id: string,
   title: string,
   content: string,

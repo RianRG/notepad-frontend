@@ -10,10 +10,12 @@
 
 <span class="notesContainer">
   @for(note of notes; track note.id){
-    <aside class="noteContainer">
+    <aside class="noteContainer" (click)="editNote($event)">
       <h3>{{ note.title }}</h3>
       <p>{{ note.content }}</p>
-      <p>{{ note.createdAt | date: 'dd/MM/yyyy' }}</p>
+      <p class="date">{{ note.createdAt | date: 'dd/MM/yyyy' }}</p>
+      <div class="isPrivate">{{ note.isPrivate }}</div>
+      <div class="noteId">{{ note.id }}</div>
     </aside>
   }
 </span>

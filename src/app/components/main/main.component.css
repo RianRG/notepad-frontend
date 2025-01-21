@@ -122,6 +122,15 @@ main{
   line-clamp: 3; 
   overflow: hidden;
   transition: .4s;
+  min-width: 150px;
+}
+
+.noteContainer .isPrivate, .noteContainer .noteId{
+  display: none;
+}
+
+.noteContainer > *{
+  pointer-events: none;
 }
 
 .noteContainer:hover{
@@ -132,6 +141,11 @@ main{
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.noteContainer .date{
+  font-size: .7rem;
+  color: grey;
 }
 
 
@@ -150,10 +164,6 @@ main{
 
   .noteContainer p{
     font-size: .7rem;
-  }
-
-  .noteContainer p:nth-child(2){
-    color: grey;
   }
 }
 
