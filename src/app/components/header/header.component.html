@@ -1,3 +1,19 @@
 <nav>
-  <h1>{{ studentInfos.username }}</h1>  
+  <h3>{{ studentInfos.username }}</h3>  
+  <button (click)="toggleFriends()"> <i class='bx bxs-user-detail'></i> </button>
 </nav>
+
+<aside class="friendsMenu" [class.active]="friendsMenuClass">
+  <aside class="friendsHeader">
+    <p>Your friends</p>
+    <button><i class='bx bx-search-alt-2'></i></button>
+  </aside>
+    @for(friend of friends; track friend.id){
+      <div class="eachFriend">
+        <p>{{ friend.username }}</p>
+        <button> <i class="bx bx-x"></i> </button>
+      </div>
+    } @empty{
+      <p>You don't have any friends...</p>
+    }
+</aside>

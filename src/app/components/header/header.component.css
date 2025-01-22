@@ -3,5 +3,103 @@ nav{
   top: 0;
   left: 0;
   width: 100%;
-  background-color: grey;
+  background-color: rgba(225, 195, 152, 0.599);
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  gap: 40%;
+  align-items: center;
+  z-index: 0;
+  z-index: 10000;
+}
+
+nav i{
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+
+nav button{
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: .4s;
+}
+nav button:hover{
+  filter: drop-shadow(0 5px red);
+}
+
+nav h3{
+  transition: .4s;
+  cursor: pointer;
+}
+
+nav h3:hover{
+  letter-spacing: 2px;
+}
+
+.friendsMenu{
+  width: 300px;
+  padding: 20px;
+  height: 100vh;
+  background-color: rgba(240, 188, 188, 0.486);
+  position: fixed;
+  right: -400px;
+
+  top: 48px;
+  opacity: 0;
+  transition: .4s;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.friendsMenu.active{
+  opacity: 1;
+  right: 0;
+}
+
+.eachFriend{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.friendsMenu button{
+  padding: 2px 5px;
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.friendsMenu aside{
+  margin-bottom: 20px;
+  border-bottom: 2px solid black;
+}
+
+.friendsHeader{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.eachFriend button i{
+  font-size: 1.2rem;
+}
+
+@media(max-width: 630px){
+  .friendsMenu{
+    width: 200px;
+  }
+
+  .friendsMenu aside p{
+    font-size: .8rem;
+  }
 }

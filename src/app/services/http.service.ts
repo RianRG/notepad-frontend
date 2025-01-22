@@ -46,11 +46,15 @@ export class HttpService {
     return this.http.get<GetNoteDTO[]>(`${environment.apiUrl}/notes`, { withCredentials: true })
   }
 
-  updateNode(noteId: string, { title, content, isPrivate }: RegisterNoteDTO): Observable<GetNoteDTO>{
+  updateNote(noteId: string, { title, content, isPrivate }: RegisterNoteDTO): Observable<GetNoteDTO>{
     return this.http.put<GetNoteDTO>(`${environment.apiUrl}/notes/${noteId}`, { title, content, isPrivate }, { withCredentials: true })
   }
 
   deleteNote(noteId: string){
     return this.http.delete(`${environment.apiUrl}/notes/${noteId}`, { withCredentials: true })
+  }
+
+  getFriends(){
+    return this.http.get(`${environment.apiUrl}/friends`, { withCredentials: true })
   }
 }

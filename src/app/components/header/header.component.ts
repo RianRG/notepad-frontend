@@ -8,13 +8,22 @@ import { HttpService } from '../../services/http.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  studentInfos!: any;
+  studentInfos: any = [];
+  friends: any = []
+  friendsMenuClass: boolean = false;
   constructor(private http: HttpService){};
 
   ngOnInit(): void{
     this.http.getSession().subscribe((msg: any) =>{
-      console.log(msg);
       this.studentInfos = msg.student;
-    })       
+    })     
+    
+    this.http.getFriends().subscribe((msg: any) =>{
+      this.friends = msg.friends
+    })
+  }
+
+  toggleFriends(){
+    this.friendsMenuClass = !this.friendsMenuClass
   }
 }

@@ -46,7 +46,7 @@ export class MainComponent {
   onSubmit(){
     this.loadingService.setLoading(true)
     if(this.currentNoteId){
-      this.http.updateNode(this.currentNoteId, this.noteForm.value).subscribe((r: any) =>{
+      this.http.updateNote(this.currentNoteId, this.noteForm.value).subscribe((r: any) =>{
         this.notes = this.notes.map(note =>{
           console.log(this.currentNoteId)
           if(note.id === this.currentNoteId){
