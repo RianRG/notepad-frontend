@@ -16,6 +16,9 @@ export class HeaderComponent {
   filteredFriends: string[] = []
   friendsMenuClass: boolean = false;
   addFriendsMenuClass: boolean = false;
+
+  sendersUsername: string[] = [];
+  friendRequestsMenuClass: boolean = false;
   constructor(private http: HttpService, private fb: FormBuilder){
     this.searchFriendsForm = this.fb.group({
       friendName: ['']
@@ -32,6 +35,13 @@ export class HeaderComponent {
       this.friends.forEach((friend: any) =>{
         this.filteredFriends.push(friend.username)
       })
+    })
+
+    this.http.getFriendRequests().subscribe((msg: any) =>{
+      this.sendersUsername = msg.friendRequests.reduce((acm: string[], k: any) =>{
+        acm.push(k.sender.username);
+        return acm;
+      }, [])
     })
   }
 
@@ -59,6 +69,7 @@ export class HeaderComponent {
 
   toggleAddFriendsMenu(){
     this.addFriendsMenuClass = !this.addFriendsMenuClass
+    if(this.friendRequestsMenuClass) this.friendRequestsMenuClass = !this.friendRequestsMenuClass
   }
   
   filterFriends(){
@@ -78,16 +89,24 @@ export class HeaderComponent {
   onSubmit(){
     
   }
-  sendersUsername: string[] = [];
-  friendRequestsMenuClass: boolean = false;
+  
   toggleFriendRequestsMenu(){
     this.friendRequestsMenuClass = !this.friendRequestsMenuClass
-    this.http.getFriendRequests().subscribe((msg: any) =>{
-      this.sendersUsername = msg.friendRequests.reduce((acm: string[], k: any) =>{
-        console.log(k.sender)
-        acm.push(k.sender.username);
-        return acm;
-      }, [])
+    if(this.addFriendsMenuClass) this.addFriendsMenuClass = !this.addFriendsMenuClass
+
+  }
+
+  acceptFriendRequest(friendName: string){
+    this.http.addFriend(friendName).subscribe((msg: any) =>{
+      const senderIndex = this.sendersUsername.findIndex(sender =>{
+        return sender === friendName
+      })
+      this.sendersUsername.splice(senderIndex, 1)
+      this.friends.push({
+        id: Math.random()*200,
+        username: friendName
+      })
+      this.filteredFriends.push(friendName)
     })
   }
 }

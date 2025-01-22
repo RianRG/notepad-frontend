@@ -38,7 +38,15 @@
 
   <div class="friendRequestsMenu" [class.active]="friendRequestsMenuClass">
     @for(sender of sendersUsername; track sender){
-      <p>{{ sender }}</p>
+      <div class="eachFriend">
+        <p>{{ sender }}</p>
+        <div class="sideButtons">
+          <button (click)="acceptFriendRequest(sender)"> <i class='bx bx-check'></i> </button>
+          <button> <i class="bx bx-x"></i> </button>
+        </div>
+      </div>
+    } @empty{
+      <p>You don't have any friend requests</p>
     }
   </div>
 

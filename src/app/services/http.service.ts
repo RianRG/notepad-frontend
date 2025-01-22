@@ -65,4 +65,8 @@ export class HttpService {
   getFriendRequests(){
     return this.http.get(`${environment.apiUrl}/friendRequests`, { withCredentials: true })
   }
+
+  addFriend(friendName: string){
+    return this.http.post(`${environment.apiUrl}/add/${friendName}`, {}, { withCredentials: true })
+  }
 }
