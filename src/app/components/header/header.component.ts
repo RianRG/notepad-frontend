@@ -109,4 +109,13 @@ export class HeaderComponent {
       this.filteredFriends.push(friendName)
     })
   }
+
+  declineFriendRequest(friendName: string){
+    this.http.unfriend(friendName).subscribe((msg: any) =>{
+      const senderIndex = this.sendersUsername.findIndex(sender =>{
+        return sender === friendName
+      })
+      this.sendersUsername.splice(senderIndex, 1)
+    })
+  }
 }

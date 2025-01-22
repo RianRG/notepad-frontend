@@ -76,7 +76,7 @@ nav h3:hover{
   gap: 10px;
 }
 
-.friendsMenu button, .sideButtons button{
+.friendsMenu button, .sideButtons button, form button{
   padding: 2px 5px;
   background-color: transparent;
   border: 1px solid black;

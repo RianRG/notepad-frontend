@@ -42,7 +42,7 @@
         <p>{{ sender }}</p>
         <div class="sideButtons">
           <button (click)="acceptFriendRequest(sender)"> <i class='bx bx-check'></i> </button>
-          <button> <i class="bx bx-x"></i> </button>
+          <button (click)="declineFriendRequest(sender)"> <i class="bx bx-x"></i> </button>
         </div>
       </div>
     } @empty{

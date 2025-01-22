@@ -69,4 +69,8 @@ export class HttpService {
   addFriend(friendName: string){
     return this.http.post(`${environment.apiUrl}/add/${friendName}`, {}, { withCredentials: true })
   }
+
+  unfriend(friendName: string){
+    return this.http.delete(`${environment.apiUrl}/unfriend/${friendName}`, { withCredentials: true })
+  }
 }
