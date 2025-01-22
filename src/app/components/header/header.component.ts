@@ -47,6 +47,7 @@ export class HeaderComponent {
         return friend.username === friendUsername
       })
       this.friends.splice(friendIndex, 1)
+      this.filteredFriends.splice(friendIndex, 1);
     })
   }
   currentFriendUsername: string = '';
