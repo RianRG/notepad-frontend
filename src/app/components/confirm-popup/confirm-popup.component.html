@@ -1,0 +1,8 @@
+<aside class="popupContainer" [class.popup]="popupClass">
+  <h3>Do u really want to do this?</h3>
+  <aside>
+    <button (click)="confirmDelete()">Yes</button>
+    <button (click)="cancelDelete()">No</button>
+  </aside>
+</aside>
+<div class="unactiveOverlay" [class.overlay]="overlayClass"></div>

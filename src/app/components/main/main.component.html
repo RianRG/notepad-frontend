@@ -13,19 +13,8 @@
   </form> 
 </span>
 
-<nav>
-  <h1>{{ studentInfos.username }}</h1>  
-</nav>
-
-<aside class="popupContainer" [class.popup]="popupClass">
-  <h3>Do u really want to delete me? :(</h3>
-  <aside>
-    <button (click)="deleteNote()">Yes</button>
-    <button (click)="togglePopup()">No</button>
-  </aside>
-</aside>
-<div class="unactiveOverlay" [class.overlay]="overlayClass"></div>
-
+<app-header></app-header>
+<app-confirm-popup (confirmation)="deleteNote()"></app-confirm-popup>
 
 <span class="notesContainer">
   @for(note of notes; track note.id){

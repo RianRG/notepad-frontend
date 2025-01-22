@@ -1,14 +1,16 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { HttpService } from '../../services/http.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { GetNoteDTO } from '../../types/responseDTO';
 import { DatePipe } from '@angular/common';
 import { LoadingService } from '../../services/loading.service';
+import { ConfirmPopupComponent } from '../confirm-popup/confirm-popup.component';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-main',
-  imports: [ReactiveFormsModule, DatePipe],
+  imports: [ReactiveFormsModule, DatePipe, ConfirmPopupComponent, HeaderComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
@@ -20,8 +22,6 @@ export class MainComponent {
   formClass: boolean = false;
   notes: GetNoteDTO[] = [];
   currentNoteId!: string | null;
-  popupClass: boolean = false;
-  overlayClass: boolean = false;
 
   constructor(private http: HttpService, private router: Router, private fb: FormBuilder){
     this.noteForm = this.fb.group({
@@ -116,14 +116,11 @@ export class MainComponent {
       this.notes.splice(noteIndex, 1);
     })
     this.formClass = !this.formClass
-    this.popupClass = !this.popupClass
-    this.overlayClass = !this.overlayClass
     this.currentNoteId = null;
     this.loadingService.setLoading(false)
   }
-
+  @ViewChild(ConfirmPopupComponent) confirmPopupComponent!: ConfirmPopupComponent;
   togglePopup(){
-    this.popupClass = !this.popupClass
-    this.overlayClass = !this.overlayClass
+    this.confirmPopupComponent.togglePopup()
   }
 }
