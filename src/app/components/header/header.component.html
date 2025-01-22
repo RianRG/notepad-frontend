@@ -6,7 +6,7 @@
 <aside class="friendsMenu" [class.active]="friendsMenuClass">
   <aside class="friendsHeader">
     <p>Your friends</p>
-    <button><i class='bx bx-search-alt-2'></i></button>
+    <button (click)="toggleAddFriendsMenu()"><i class='bx bx-search-alt-2'></i></button>
   </aside>
     @for(friend of friends; track friend.id){
       <div class="eachFriend">
@@ -17,4 +17,19 @@
       <p>You don't have any friends...</p>
     }
   </aside>
+
+  <div class="addFriendsMenu" [class.active]="addFriendsMenuClass">
+    <form (ngSubmit)="onSubmit()" [formGroup]="searchFriendsForm">
+      <input type="text" placeholder="Search for friends..." formControlName="friendName" (input)="filterFriends()">
+      <button type="button" (click)="toggleAddFriendsMenu()"> <i class="bx bx-x"></i> </button>
+    </form>
+
+    @for(friend of filteredFriends; track friend){
+      <div class="eachFriend">
+        <p>{{ friend }}</p>
+      </div>
+    } @empty{
+      <p>Do you want to add him/her?</p>
+    }
+  </div>
   <app-confirm-popup (confirmation)="blockFriend()"></app-confirm-popup>

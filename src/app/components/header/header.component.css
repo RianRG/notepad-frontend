@@ -71,7 +71,7 @@ nav h3:hover{
   padding: 4px;
 }
 
-.friendsMenu button{
+.friendsMenu button, .addFriendsMenu button{
   padding: 2px 5px;
   background-color: transparent;
   border: 1px solid black;
@@ -94,6 +94,50 @@ nav h3:hover{
 
 .eachFriend button i{
   font-size: 1.2rem;
+}
+
+.addFriendsMenu{
+  background-color: pink;
+  padding: 20px;
+  height: 0;
+  width: 600px;
+  transition: .4s;
+  opacity: 0;
+  position: fixed;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  z-index: 10000;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.addFriendsMenu input{
+  background-color: transparent;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid black;
+  width: 100%;
+  padding: 5px;
+}
+
+.addFriendsMenu input::placeholder{
+  font-weight: 600;
+}
+
+.addFriendsMenu.active{
+  opacity: 1;
+  height: 200px;
+}
+
+.addFriendsMenu form{
+  position: relative;
+}
+
+.addFriendsMenu form button{
+  position: absolute;
+  right: 10px;
+  top: 0;
 }
 
 @media(max-width: 630px){

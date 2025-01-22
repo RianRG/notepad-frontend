@@ -1,19 +1,26 @@
 import { Component, ViewChild } from '@angular/core';
 import { HttpService } from '../../services/http.service';
 import { ConfirmPopupComponent } from '../confirm-popup/confirm-popup.component';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
-  imports: [ConfirmPopupComponent],
+  imports: [ConfirmPopupComponent, ReactiveFormsModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-
+  searchFriendsForm!: FormGroup;
   studentInfos: any = [];
   friends: any = []
+  filteredFriends: string[] = []
   friendsMenuClass: boolean = false;
-  constructor(private http: HttpService){};
+  addFriendsMenuClass: boolean = false;
+  constructor(private http: HttpService, private fb: FormBuilder){
+    this.searchFriendsForm = this.fb.group({
+      friendName: ['']
+    })
+  };
 
   ngOnInit(): void{
     this.http.getSession().subscribe((msg: any) =>{
@@ -22,6 +29,9 @@ export class HeaderComponent {
     
     this.http.getFriends().subscribe((msg: any) =>{
       this.friends = msg.friends
+      this.friends.forEach((friend: any) =>{
+        this.filteredFriends.push(friend.username)
+      })
     })
   }
 
@@ -44,5 +54,27 @@ export class HeaderComponent {
   togglePopup(friendUsername: string){
     this.confirmPopupComponent.togglePopup()
     this.currentFriendUsername = friendUsername;
+  }
+
+  toggleAddFriendsMenu(){
+    this.addFriendsMenuClass = !this.addFriendsMenuClass
+  }
+  
+  filterFriends(){
+    if(this.searchFriendsForm.value.friendName!==''){
+      this.filteredFriends = this.filteredFriends.filter(f =>{
+        return f.startsWith(this.searchFriendsForm.value.friendName)
+      })
+    } else{
+      this.filteredFriends = this.friends.reduce((acm: string[], k: any) =>{
+        acm.push(k.username)
+        return acm;
+      }, [])
+    }
+    
+  }
+
+  onSubmit(){
+    
   }
 }
