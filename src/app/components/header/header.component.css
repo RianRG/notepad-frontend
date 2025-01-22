@@ -45,7 +45,6 @@ nav h3:hover{
   background-color: rgba(240, 188, 188, 0.486);
   position: fixed;
   right: -400px;
-
   top: 48px;
   opacity: 0;
   transition: .4s;
@@ -53,6 +52,7 @@ nav h3:hover{
   justify-content: start;
   align-items: start;
   flex-direction: column;
+  gap: 10px;
   z-index: 1000;
   backdrop-filter: blur(4px);
 }
@@ -67,6 +67,8 @@ nav h3:hover{
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  border-bottom: 1px solid grey;
+  padding: 4px;
 }
 
 .friendsMenu button{

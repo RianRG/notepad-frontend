@@ -11,9 +11,10 @@
     @for(friend of friends; track friend.id){
       <div class="eachFriend">
         <p>{{ friend.username }}</p>
-        <button> <i class="bx bx-x"></i> </button>
+        <button (click)="togglePopup(friend.username)"> <i class="bx bx-x"></i> </button>
       </div>
     } @empty{
       <p>You don't have any friends...</p>
     }
-</aside>
+  </aside>
+  <app-confirm-popup (confirmation)="blockFriend()"></app-confirm-popup>
