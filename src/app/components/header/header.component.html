@@ -6,7 +6,10 @@
 <aside class="friendsMenu" [class.active]="friendsMenuClass">
   <aside class="friendsHeader">
     <p>Your friends</p>
-    <button (click)="toggleAddFriendsMenu()"><i class='bx bx-search-alt-2'></i></button>
+    <div class="sideButtons">
+      <button (click)="toggleAddFriendsMenu()"><i class='bx bx-search-alt-2'></i></button>
+      <button (click)="toggleFriendRequestsMenu()"> <i class='bx bx-envelope'></i> </button>
+    </div>
   </aside>
     @for(friend of friends; track friend.id){
       <div class="eachFriend">
@@ -32,4 +35,11 @@
       <p>Do you want to add him/her?</p>
     }
   </div>
+
+  <div class="friendRequestsMenu" [class.active]="friendRequestsMenuClass">
+    @for(sender of sendersUsername; track sender){
+      <p>{{ sender }}</p>
+    }
+  </div>
+
   <app-confirm-popup (confirmation)="blockFriend()"></app-confirm-popup>

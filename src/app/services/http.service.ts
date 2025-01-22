@@ -61,4 +61,8 @@ export class HttpService {
   blockFriend(friendUsername: string){
     return this.http.delete(`${environment.apiUrl}/block/${friendUsername}`, { withCredentials: true })
   }
+
+  getFriendRequests(){
+    return this.http.get(`${environment.apiUrl}/friendRequests`, { withCredentials: true })
+  }
 }

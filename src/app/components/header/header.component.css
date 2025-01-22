@@ -71,6 +71,11 @@ nav h3:hover{
   padding: 4px;
 }
 
+.sideButtons{
+  display: flex;
+  gap: 10px;
+}
+
 .friendsMenu button, .addFriendsMenu button{
   padding: 2px 5px;
   background-color: transparent;
@@ -140,6 +145,24 @@ nav h3:hover{
   top: 0;
 }
 
+.friendRequestsMenu{
+  position: fixed;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  background-color: red;
+  transition: .4s;
+  opacity: 0;
+  height: 0;
+  width: 400px;
+  z-index: 1000;
+}
+
+.friendRequestsMenu.active{
+  opacity: 1;
+  height: 200px;
+}
+
 @media(max-width: 630px){
   .friendsMenu{
     width: 200px;
@@ -147,5 +170,9 @@ nav h3:hover{
 
   .friendsMenu aside p{
     font-size: .8rem;
+  }
+
+  .addFriendsMenu{
+    width: 90%;
   }
 }

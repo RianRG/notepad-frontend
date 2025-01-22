@@ -78,4 +78,16 @@ export class HeaderComponent {
   onSubmit(){
     
   }
+  sendersUsername: string[] = [];
+  friendRequestsMenuClass: boolean = false;
+  toggleFriendRequestsMenu(){
+    this.friendRequestsMenuClass = !this.friendRequestsMenuClass
+    this.http.getFriendRequests().subscribe((msg: any) =>{
+      this.sendersUsername = msg.friendRequests.reduce((acm: string[], k: any) =>{
+        console.log(k.sender)
+        acm.push(k.sender.username);
+        return acm;
+      }, [])
+    })
+  }
 }
