@@ -25,9 +25,6 @@ nav button{
   outline: none;
   transition: .4s;
 }
-nav button:hover{
-  filter: drop-shadow(0 5px red);
-}
 
 nav h3{
   transition: .4s;
@@ -76,7 +73,7 @@ nav h3:hover{
   gap: 10px;
 }
 
-.friendsMenu button, .sideButtons button, form button{
+.friendsMenu button, .sideButtons button, form button, .friendRequestsMenu button{
   padding: 2px 5px;
   background-color: transparent;
   border: 1px solid black;
@@ -115,6 +112,7 @@ nav h3:hover{
   z-index: 10000;
   border-radius: 10px;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .addFriendsMenu input{
@@ -133,6 +131,7 @@ nav h3:hover{
 .addFriendsMenu.active{
   opacity: 1;
   height: 200px;
+  pointer-events: all;
 }
 
 .addFriendsMenu form{
@@ -145,10 +144,17 @@ nav h3:hover{
   top: 0;
 }
 
+.friendRequestsMenuHeader{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border-bottom: 2px solid grey;
+  padding: 5px;
+}
+
 .friendRequestsMenu{
   background-color: pink;
-  padding: 20px;
-  height: 0;
+  padding: 0;
   width: 600px;
   transition: .4s;
   opacity: 0;
@@ -159,11 +165,13 @@ nav h3:hover{
   z-index: 10000;
   border-radius: 10px;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .friendRequestsMenu.active{
   opacity: 1;
-  height: 200px;
+  pointer-events: all;
+  padding: 20px;
 }
 
 @media(max-width: 630px){
@@ -177,5 +185,17 @@ nav h3:hover{
 
   .addFriendsMenu{
     width: 90%;
+  }
+
+  .friendRequestsMenu{
+    width: 90%;
+  }
+
+  * > p{
+    font-size: .8rem;
+  }
+
+  * > i{
+    font-size: .7rem;
   }
 }

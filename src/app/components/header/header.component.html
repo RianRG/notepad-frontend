@@ -32,11 +32,16 @@
         <p>{{ friend }}</p>
       </div>
     } @empty{
-      <p>Do you want to add him/her?</p>
+      <p>Do you want to add someone?</p>
     }
   </div>
 
   <div class="friendRequestsMenu" [class.active]="friendRequestsMenuClass">
+    <div class="friendRequestsMenuHeader">
+      <p>Friend requests</p>
+      <button type="button" (click)="toggleFriendRequestsMenu()"> <i class="bx bx-x"></i> </button>
+    </div>
+    
     @for(sender of sendersUsername; track sender){
       <div class="eachFriend">
         <p>{{ sender }}</p>
