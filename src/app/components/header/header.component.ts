@@ -85,9 +85,22 @@ export class HeaderComponent {
     }
     
   }
-
+  notificationMessage: string = '';
   onSubmit(){
-    
+    this.http.addFriend(this.searchFriendsForm.value.friendName).subscribe({
+      next: ({msg}: any) =>{
+        this.notificationMessage = msg
+        setTimeout(() =>{
+          this.notificationMessage = '';
+        }, 2000)
+      },
+      error: ({error}) =>{
+        this.notificationMessage = error.message
+        setTimeout(() =>{
+          this.notificationMessage = '';
+        }, 2000)
+      }
+    })
   }
   
   toggleFriendRequestsMenu(){

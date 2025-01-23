@@ -168,6 +168,26 @@ nav h3:hover{
   pointer-events: none;
 }
 
+.notification{
+  position: fixed;
+  padding: 0;
+  width: 200px;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 10%);
+  opacity: 0;
+  transition: .4s;
+  pointer-events: none;
+  text-align: center;
+  z-index: 10000;
+}
+
+.notification.active{
+  opacity: 1;
+  padding: 10px;
+  background-color: rgb(241, 216, 101);
+}
+
 .friendRequestsMenu.active{
   opacity: 1;
   pointer-events: all;

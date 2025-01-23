@@ -56,3 +56,6 @@
   </div>
 
   <app-confirm-popup (confirmation)="blockFriend()"></app-confirm-popup>
+  <aside class="notification" [class.active]="notificationMessage!==''">
+    <p>{{ notificationMessage }}</p>
+  </aside>
