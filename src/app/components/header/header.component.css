@@ -171,7 +171,7 @@ nav h3:hover{
 .notification{
   position: fixed;
   padding: 0;
-  width: 200px;
+  width: 300px;
   top: 10%;
   left: 50%;
   transform: translate(-50%, 10%);

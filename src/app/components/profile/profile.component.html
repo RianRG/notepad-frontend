@@ -1,0 +1,12 @@
+@if(errorMessage!==''){
+  <h1>{{ errorMessage }}</h1>
+}
+
+<main>
+  <h1>{{ studentInfos.username }}</h1>
+  <div class="notesContainer">
+    @for(note of studentInfos.notes; track note.id){
+      <h1>{{ note.title }}</h1>
+    }
+  </div>
+</main>

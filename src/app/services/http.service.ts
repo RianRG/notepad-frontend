@@ -73,4 +73,8 @@ export class HttpService {
   unfriend(friendName: string){
     return this.http.delete(`${environment.apiUrl}/unfriend/${friendName}`, { withCredentials: true })
   }
+
+  getStudentProfile(username: string){
+    return this.http.get(`${environment.apiUrl}/students/${username}`, { withCredentials: true })
+  }
 }
