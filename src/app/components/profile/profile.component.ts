@@ -4,10 +4,11 @@ import { HttpService } from '../../services/http.service';
 import { GetProfileDTO } from '../../types/responseDTO';
 import { DatePipe } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
+import { NotificationComponent } from '../notification/notification.component';
 
 @Component({
   selector: 'app-profile',
-  imports: [DatePipe, HeaderComponent],
+  imports: [DatePipe, HeaderComponent, NotificationComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
@@ -27,8 +28,37 @@ export class ProfileComponent {
     })
   }
 
-  @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
+  @ViewChild(NotificationComponent) notificationComponent!: NotificationComponent;
   addFriend(username: string){
-    console.log(username)
+    this.http.addFriend(username).subscribe({
+      next: ({ msg }: any) => {
+        this.notificationComponent.showNotification(msg)
+      },
+      error: ({ error }) =>{
+        this.notificationComponent.showNotification(error.message)
+      }
+    })
+  }
+
+  blockFriend(username: string){
+    this.http.blockFriend(username).subscribe({
+      next: ({ msg }: any) => {
+        this.notificationComponent.showNotification(msg)
+      },
+      error: ({ error }) =>{
+        this.notificationComponent.showNotification(error.message)
+      }
+    })
+  }
+
+  unfriend(username: string){
+    this.http.unfriend(username).subscribe({
+      next: ({ msg }: any) => {
+        this.notificationComponent.showNotification(msg)
+      },
+      error: ({ error }) =>{
+        this.notificationComponent.showNotification(error.message)
+      }
+    })
   }
 }
