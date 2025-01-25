@@ -3,10 +3,11 @@ import { HttpService } from '../../services/http.service';
 import { ConfirmPopupComponent } from '../confirm-popup/confirm-popup.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NotificationComponent } from '../notification/notification.component';
+import { Route, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [ConfirmPopupComponent, ReactiveFormsModule, NotificationComponent],
+  imports: [ConfirmPopupComponent, ReactiveFormsModule, NotificationComponent , RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -20,7 +21,7 @@ export class HeaderComponent {
 
   sendersUsername: string[] = [];
   friendRequestsMenuClass: boolean = false;
-  constructor(private http: HttpService, private fb: FormBuilder){
+  constructor(private http: HttpService, private fb: FormBuilder, private route: Router){
     this.searchFriendsForm = this.fb.group({
       friendName: ['']
     })
@@ -127,5 +128,10 @@ export class HeaderComponent {
       })
       this.sendersUsername.splice(senderIndex, 1)
     })
+  }
+
+  goToProfile(username: string){
+    console.log(username)
+    this.route.navigateByUrl(`/profile/${username}`)
   }
 }

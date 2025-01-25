@@ -172,6 +172,9 @@ nav h3:hover{
   pointer-events: all;
   padding: 20px;
 }
+.eachfriend p a{
+  z-index: 10000;
+}
 
 @media(max-width: 630px){
   .friendsMenu{

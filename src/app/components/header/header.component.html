@@ -13,7 +13,7 @@
   </aside>
     @for(friend of friends; track friend.id){
       <div class="eachFriend">
-        <p>{{ friend.username }}</p>
+        <p><a [routerLink]="['/profile', friend.username]">{{ friend.username }}</a></p>
         <button (click)="togglePopup(friend.username)"> <i class="bx bx-x"></i> </button>
       </div>
     } @empty{
