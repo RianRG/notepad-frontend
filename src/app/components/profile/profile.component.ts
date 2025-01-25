@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { GetProfileDTO } from '../../types/responseDTO';
@@ -25,5 +25,10 @@ export class ProfileComponent {
           this.errorMessage = error.message
       }
     })
+  }
+
+  @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
+  addFriend(username: string){
+    console.log(username)
   }
 }

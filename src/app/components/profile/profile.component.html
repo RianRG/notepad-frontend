@@ -10,12 +10,13 @@
       <h1>{{ studentInfos.username }}</h1>
       <p>Member since {{ studentInfos.createdAt | date }}</p>
       <div class="sideButtons">
-        <button>Add</button>
-        <button>Block</button>
-        <button>Remove</button>
+        <button (click)="addFriend(studentInfos.username)"><i class='bx bx-user-plus'></i></button>
+        <button><i class='bx bx-user-x'></i></button>
+        <button><i class='bx bx-user-minus' ></i></button>
       </div>
     </aside>
-    <span class="notesContainer">
+    @if(studentInfos.notes.length>0){
+      <span class="notesContainer">
       @for(note of studentInfos.notes; track note.id){
         <aside class="noteContainer">
           <h3>{{ note.title }}</h3>
@@ -24,11 +25,12 @@
           <div class="isPrivate">{{ note.isPrivate }}</div>
           <div class="noteId">{{ note.id }}</div>
         </aside>
-      } @empty{
+      } 
+      </span>
+    } @else{
         <div class="emptyNotes">
           <h2>{{ studentInfos.username }} doesn't have any notes...</h2>
         </div>
       }
-    </span>
   </main>
 }

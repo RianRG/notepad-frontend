@@ -2,10 +2,11 @@ import { Component, ViewChild } from '@angular/core';
 import { HttpService } from '../../services/http.service';
 import { ConfirmPopupComponent } from '../confirm-popup/confirm-popup.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { NotificationComponent } from '../notification/notification.component';
 
 @Component({
   selector: 'app-header',
-  imports: [ConfirmPopupComponent, ReactiveFormsModule],
+  imports: [ConfirmPopupComponent, ReactiveFormsModule, NotificationComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -85,20 +86,14 @@ export class HeaderComponent {
     }
     
   }
-  notificationMessage: string = '';
+  @ViewChild(NotificationComponent) notificationComponent!: NotificationComponent
   onSubmit(){
     this.http.addFriend(this.searchFriendsForm.value.friendName).subscribe({
       next: ({msg}: any) =>{
-        this.notificationMessage = msg
-        setTimeout(() =>{
-          this.notificationMessage = '';
-        }, 2000)
+        this.notificationComponent.showNotification(msg)
       },
       error: ({error}) =>{
-        this.notificationMessage = error.message
-        setTimeout(() =>{
-          this.notificationMessage = '';
-        }, 2000)
+        this.notificationComponent.showNotification(error.message)
       }
     })
   }

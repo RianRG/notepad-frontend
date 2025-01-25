@@ -49,22 +49,22 @@ main{
 
 .emptyNotes{
   width: 100%;
-  position: fixed;
-  bottom: 50%;
-  left: 50%;
-  transform: translate(-50%, 50%);
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 10px;
-}
+} 
 
 .profileDetails{
   width: 100%;
   background-color: red;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-direction: column;
+  padding: 20px;
 }
 
 .sideButtons{
@@ -82,6 +82,12 @@ main{
   cursor: pointer;
   font-weight: 600;
   letter-spacing: 4px;
+  border-radius: 8px;
+}
+
+.sideButtons button i{
+  font-size: 1rem;
+  padding: 4px;
 }
 
 @media(max-width: 810px){
