@@ -1,0 +1,128 @@
+main{
+  padding: 20px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.notesContainer{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  grid-gap: 20px;
+  padding: 20px;
+}
+
+.noteContainer{
+  background-color: rgb(239, 229, 215);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  -webkit-box-orient: vertical;
+  line-clamp: 3; 
+  overflow: hidden;
+  transition: .4s;
+  min-width: 250px;
+}
+
+.noteContainer .isPrivate, .noteContainer .noteId{
+  display: none;
+}
+
+.noteContainer > *{
+  pointer-events: none;
+}
+
+.noteContainer p, .noteContainer h3{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.noteContainer .date{
+  font-size: .7rem;
+  color: grey;
+}
+
+.emptyNotes{
+  width: 100%;
+  position: fixed;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profileDetails{
+  width: 100%;
+  background-color: red;
+  text-align: center;
+}
+
+.sideButtons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.sideButtons button{
+  padding: 2px;
+  background-color: transparent;
+  outline: none;
+  border: 2px solid black;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 4px;
+}
+
+@media(max-width: 810px){
+
+  .notesContainer{
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .noteContainer{
+    min-width: 150px;
+  }
+
+  .noteContainer h3{
+    font-size: .9rem;
+  }
+
+  .noteContainer p{
+    font-size: .7rem;
+  }
+
+  span:first-child form button i{
+    font-size: 1.7rem;
+  }
+  main h1{
+    font-size: 1.4rem;
+  }
+}
+
+@media(max-width: 587px){
+  .notesContainer{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .popupContainer{
+    width: 95%;
+  }
+  .popupContainer h3{
+    font-size: .9rem;
+  }
+
+  .emptyNotes h2{
+    font-size: 1.2rem;
+  }
+}

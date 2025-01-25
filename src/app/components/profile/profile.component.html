@@ -1,12 +1,34 @@
+<app-header></app-header>
+
 @if(errorMessage!==''){
   <h1>{{ errorMessage }}</h1>
 }
 
-<main>
-  <h1>{{ studentInfos.username }}</h1>
-  <div class="notesContainer">
-    @for(note of studentInfos.notes; track note.id){
-      <h1>{{ note.title }}</h1>
-    }
-  </div>
-</main>
+@if(studentInfos.username){
+  <main>
+    <aside class="profileDetails">
+      <h1>{{ studentInfos.username }}</h1>
+      <p>Member since {{ studentInfos.createdAt | date }}</p>
+      <div class="sideButtons">
+        <button>Add</button>
+        <button>Block</button>
+        <button>Remove</button>
+      </div>
+    </aside>
+    <span class="notesContainer">
+      @for(note of studentInfos.notes; track note.id){
+        <aside class="noteContainer">
+          <h3>{{ note.title }}</h3>
+          <p>{{ note.content }}</p>
+          <p class="date">{{ note.createdAt | date: 'dd/MM/yyyy' }}</p>
+          <div class="isPrivate">{{ note.isPrivate }}</div>
+          <div class="noteId">{{ note.id }}</div>
+        </aside>
+      } @empty{
+        <div class="emptyNotes">
+          <h2>{{ studentInfos.username }} doesn't have any notes...</h2>
+        </div>
+      }
+    </span>
+  </main>
+}
