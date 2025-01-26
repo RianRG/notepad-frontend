@@ -12,8 +12,5 @@ export const routes: Routes = [
   { path: 'register', component: HomeComponent },
   { path: 'main', component: MainComponent, canActivate: [authenticateGuard] },
   { path: 'login', component: LoginComponent },
+  { path: 'profile/:username', component: ProfileComponent, canActivate: [authenticateGuard] }
 ];
-
-export const serverRoutes: ServerRoute[] = [
-  { path: 'profile/:username', renderMode: RenderMode.Server,  }
-]
