@@ -1,5 +1,5 @@
 <nav>
-  <h3>{{ studentInfos.username }}</h3>  
+   <h3> <a [routerLink]="['/main']">{{ studentInfos.username }}</a> </h3>  
   <button (click)="toggleFriends()"> <i class='bx bxs-user-detail'></i> </button>
 </nav>
 
@@ -16,7 +16,7 @@
         <p><a [routerLink]="['/profile', friend.username]">{{ friend.username }}</a></p>
         <button (click)="togglePopup(friend.username)"> <i class="bx bx-x"></i> </button>
       </div>
-    } @empty{
+    } @empty{                                                                                                                                                                                                                                                                                                                                   	            	  	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
       <p>You don't have any friends...</p>
     }
   </aside>

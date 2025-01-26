@@ -176,6 +176,16 @@ nav h3:hover{
   z-index: 10000;
 }
 
+.eachFriend p a{
+  text-decoration: none;
+  color: black;
+}
+
+nav h3 a{
+  text-decoration: none;
+  color: black;
+}
+
 @media(max-width: 630px){
   .friendsMenu{
     width: 200px;

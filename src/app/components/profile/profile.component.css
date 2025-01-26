@@ -1,5 +1,6 @@
 main{
   padding: 20px; 
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,24 +48,17 @@ main{
   color: grey;
 }
 
-.emptyNotes{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 10px;
-} 
 
 .profileDetails{
-  width: 100%;
-  background-color: red;
+  background-color: rgb(240, 237, 231);
+  box-shadow: 0 -15px rgb(237, 227, 227), 0 -30px rgb(237, 217, 160), 0 -50px rgb(230, 186, 97);
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
   flex-direction: column;
-  padding: 20px;
+  padding: 50px;
+  border-radius: 10px;
 }
 
 .sideButtons{

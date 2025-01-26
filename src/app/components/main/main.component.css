@@ -21,7 +21,7 @@ span.active{
   pointer-events: all;
   opacity: 1;
   width: 800px;
-  z-index: 1000;
+  z-index: 10001;
 }
 
 form{
