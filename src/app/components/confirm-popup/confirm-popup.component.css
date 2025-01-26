@@ -35,7 +35,7 @@
   right: 50%;
   transform: translate(50%, -50%);
   transition: .4s;
-  z-index: 1001;
+  z-index: 1000000000;
   opacity: 0;
   width: 400px;
   height: 0;
