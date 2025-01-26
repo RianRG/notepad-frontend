@@ -77,7 +77,7 @@ export class MainComponent {
     this.formClass = !this.formClass
     setTimeout(() =>{
       this.loadingService.setLoading(false);
-    }, 200)
+    }, 600)
   }
 
   toggleForm(){

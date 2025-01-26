@@ -14,7 +14,16 @@ import { NotificationComponent } from '../notification/notification.component';
 })
 export class ProfileComponent {
 
-  studentInfos!: GetProfileDTO
+  studentInfos: GetProfileDTO = {
+    username: '',
+    createdAt: '',
+    email: '',
+    friends: 0,
+    id: '',
+    notes: [],
+    password: '',
+    sessionId: ''
+  }
   errorMessage: string = '';
   constructor(private route: ActivatedRoute, private http: HttpService){};
 
