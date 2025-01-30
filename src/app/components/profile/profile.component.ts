@@ -39,8 +39,8 @@ export class ProfileComponent {
   };
 
   ngOnInit(): void{
-    this.currentFriendName = this.route.snapshot.paramMap.get('username')!;
     this.route.params.subscribe((params: any) =>{
+      this.currentFriendName = this.route.snapshot.paramMap.get('username')!;
       this.http.getStudentProfile(this.route.snapshot.paramMap.get('username')!).subscribe({
       
         next: (msg: any) => this.studentInfos = msg.student,
