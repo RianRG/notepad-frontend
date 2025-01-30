@@ -8,6 +8,205 @@ main{
   gap: 30px;
 }
 
+span:first-child{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  position: fixed;
+  background-color: rgba(246, 222, 176, 0.822);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  transition: .4s;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+span.active{
+  padding: 20px;
+  pointer-events: all;
+  opacity: 1;
+  width: 800px;
+  z-index: 10001;
+}
+
+form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  width: 100%;
+}
+
+form ::placeholder{
+  font-weight: 800;
+}
+
+textarea{
+  resize: none;
+  height: 400px;
+  width: 100%;
+  outline: none;
+  padding: 20px;
+  background-color: rgba(245, 231, 205, 0.774);
+  border-radius: 20px;
+}
+
+textarea::-webkit-scrollbar {
+  width: 12px; /* Largura da barra de rolagem */
+}
+
+textarea::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Cor do fundo da barra de rolagem */
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: #888; /* Cor do "thumb" (parte móvel) */
+  border-radius: 10px; /* Arredondamento do "thumb" */
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Cor do "thumb" ao passar o mouse */
+}
+
+form input{
+  border: none;
+  border-bottom: 2px solid black;
+  background-color: transparent;
+  outline: none;
+  padding: 5px 8px;
+  font-size: 2rem;
+  width: 100%;
+}
+
+span:first-child .bx-x{
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: .4s;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+.bxs-trash{
+  position: absolute;
+  top: 0;
+  font-size: 2rem;
+  left: 0;
+  cursor: pointer;
+  transition: .4s;
+}
+
+span:first-child button:hover .bxs-trash{
+  top: -5px;
+}
+
+button .bx-x{
+  font-size: 3rem;
+  transition: .4s;
+}
+
+span:first-child button:hover .bx-x{
+  rotate: 90deg;
+}
+
+/* checkbox copied from "https://getcssscan.com/css-checkboxes-examples" */
+
+
+.checkbox-wrapper-2 .ikxBAC {
+  appearance: none;
+  background-color: #dfe1e4;
+  border-radius: 72px;
+  border-style: none;
+  flex-shrink: 0;
+  height: 20px;
+  margin: 0;
+  position: relative;
+  width: 30px;
+}
+
+.checkbox-wrapper-2 .ikxBAC::before {
+  bottom: -6px;
+  content: "";
+  left: -6px;
+  position: absolute;
+  right: -6px;
+  top: -6px;
+}
+
+.checkbox-wrapper-2 .ikxBAC,
+.checkbox-wrapper-2 .ikxBAC::after {
+  transition: all 100ms ease-out;
+}
+
+.checkbox-wrapper-2 .ikxBAC::after {
+  background-color: #fff;
+  border-radius: 50%;
+  content: "";
+  height: 14px;
+  left: 3px;
+  position: absolute;
+  top: 3px;
+  width: 14px;
+}
+
+.checkbox-wrapper-2 input[type=checkbox] {
+  cursor: pointer;
+}
+
+.checkbox-wrapper-2 .ikxBAC:hover {
+  background-color: #c9cbcd;
+  transition-duration: 0s;
+}
+
+.checkbox-wrapper-2 .ikxBAC:checked {
+  background-color: #6e79d6;
+}
+
+.checkbox-wrapper-2 .ikxBAC:checked::after {
+  background-color: #fff;
+  left: 13px;
+}
+
+.checkbox-wrapper-2 :focus:not(.focus-visible) {
+  outline: 0;
+}
+
+.checkbox-wrapper-2 .ikxBAC:checked:hover {
+  background-color: #535db3;
+}
+
+.checkbox-wrapper-2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.submitButton{
+  outline: none;
+  border: 2px solid black;
+  background-color: transparent;
+  font-weight: 600;
+  letter-spacing: 3px;
+  padding: 3px 5px;
+  cursor: pointer;
+  transition: .4s;
+}
+
+.submitButton:hover{
+  letter-spacing: 5px;
+}
+
+
 .notesContainer{
   display: grid;
   grid-template-columns: repeat(4, 1fr); 
@@ -84,8 +283,15 @@ main{
   padding: 4px;
 }
 
-@media(max-width: 810px){
 
+@media(max-width: 810px){
+  span:first-child{
+    width: 80%;
+  }
+
+  span:first-child form button i{
+    font-size: 1.7rem;
+  }
   .notesContainer{
     grid-template-columns: repeat(3, 1fr);
   }
@@ -109,8 +315,31 @@ main{
     font-size: 1.4rem;
   }
 }
+.columnButtons{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.columnButtons p{
+  font-size: .8rem;
+}
+
+.columnButtons button{
+  width: 40px;
+}
 @media(max-width: 587px){
+
+  span:first-child form input{
+    font-size: 1.2rem;
+  }
+  span:first-child form textarea{
+    font-size: .8rem;
+  }
+  span:first-child{
+    width: 90%;
+  }
+
   .notesContainer{
     grid-template-columns: repeat(2, 1fr);
   }

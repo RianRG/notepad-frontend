@@ -1,8 +1,24 @@
+<span [class.active]="formClass" class="formContainer">
+  <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
+    <button type="button" (click)="toggleForm()"><i class='bx bx-x'></i></button>
+    <button type="button" (click)="togglePopup()"><i class='bx bxs-trash'></i></button>
+    <input type="text" formControlName="title" required placeholder="Title...">
+    <textarea formControlName="content" required placeholder="Content..."></textarea>
+    <div class="checkbox-wrapper-2">
+      <label for="isPrivate">Is Private?</label>
+      <input type="checkbox" class="sc-gJwTLC ikxBAC" formControlName="isPrivate">
+    </div>
+    
+    <button type="submit" class="submitButton">Send</button>
+  </form> 
+</span>
 <app-header></app-header>
+<app-confirm-popup (confirmation)="blockFriend()"></app-confirm-popup>
 <app-notification></app-notification>
 @if(errorMessage!==''){
   <h1>{{ errorMessage }}</h1>
 }
+
 
 @if(studentInfos.username){
   <main>
@@ -10,15 +26,24 @@
       <h1>{{ studentInfos.username }}</h1>
       <p>Member since {{ studentInfos.createdAt | date }}</p>
       <div class="sideButtons">
-        <button (click)="addFriend(studentInfos.username)"><i class='bx bx-user-plus'></i></button>
-        <button (click)="blockFriend(studentInfos.username)"><i class='bx bx-user-x'></i></button>
+        <div class="columnButtons">
+          <button (click)="addFriend(studentInfos.username)"><i class='bx bx-user-plus'></i></button>
+          <p>Add</p>
+        </div>
+        <div class="columnButtons">
+          <button (click)="toggleConfirmPopup()"><i class='bx bx-user-x'></i></button>
+          <p>Block</p>
+        </div>
+        <div class="columnButtons">
         <button (click)="unfriend(studentInfos.username)"><i class='bx bx-user-minus' ></i></button>
+        <p>Unfriend</p>
+        </div>
       </div>
     </aside>
     @if(studentInfos.notes.length>0){
       <span class="notesContainer">
       @for(note of studentInfos.notes; track note.id){
-        <aside class="noteContainer">
+        <aside class="noteContainer" (click)="editNote($event)">
           <h3>{{ note.title }}</h3>
           <p>{{ note.content }}</p>
           <p class="date">{{ note.createdAt | date: 'dd/MM/yyyy' }}</p>

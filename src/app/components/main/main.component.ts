@@ -34,7 +34,6 @@ export class MainComponent {
   
   
   ngOnInit(): void{
-    console.log(process.env['NODE_ENV']);
     this.http.getSession().subscribe((msg: any) =>{
       this.studentInfos = msg.student
     })

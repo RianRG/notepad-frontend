@@ -55,13 +55,18 @@ export class HeaderComponent {
   blockFriend(){
     const friendUsername = this.currentFriendUsername
     this.http.blockFriend(friendUsername).subscribe((msg: any) =>{
-      const friendIndex = this.friends.findIndex((friend: any) =>{
-        return friend.username === friendUsername
-      })
-      this.friends.splice(friendIndex, 1)
-      this.filteredFriends.splice(friendIndex, 1);
+      this.removeFriendOfArray(friendUsername)
     })
   }
+
+  removeFriendOfArray(friendUsername: string){
+    const friendIndex = this.friends.findIndex((friend: any) =>{
+      return friend.username === friendUsername
+    })
+    this.friends.splice(friendIndex, 1)
+    this.filteredFriends.splice(friendIndex, 1);
+  }
+
   currentFriendUsername: string = '';
   @ViewChild(ConfirmPopupComponent) confirmPopupComponent!: ConfirmPopupComponent;
   togglePopup(friendUsername: string){
@@ -128,10 +133,5 @@ export class HeaderComponent {
       })
       this.sendersUsername.splice(senderIndex, 1)
     })
-  }
-
-  goToProfile(username: string){
-    console.log(username)
-    this.route.navigateByUrl(`/profile/${username}`)
   }
 }
