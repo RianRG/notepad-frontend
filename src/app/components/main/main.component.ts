@@ -34,6 +34,7 @@ export class MainComponent {
   
   
   ngOnInit(): void{
+    console.log(process.env['NODE_ENV']);
     this.http.getSession().subscribe((msg: any) =>{
       this.studentInfos = msg.student
     })
@@ -41,6 +42,7 @@ export class MainComponent {
     this.http.getNotes().subscribe((msg: any) =>{
       this.notes = msg;
     })
+
   }
 
   onSubmit(){

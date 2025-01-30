@@ -1,3 +1,3 @@
 export const environment = {
-  apiUrl: 'https://notepad-jnn2.onrender.com'
+  apiUrl: process.env['NODE_ENV'] === "production" ? 'https://notepad-jnn2.onrender.com' : "http://localhost:5000"
 }
