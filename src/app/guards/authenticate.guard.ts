@@ -9,7 +9,7 @@ export const authenticateGuard: CanActivateFn = (route, state) => {
   const http = inject(HttpService);
   return http.isAuthenticated().pipe(
     tap(isAuth => {
-      console.log('ok')
+      // console.log('ok')
     }),
 
   );
