@@ -68,25 +68,25 @@ export class ProfileComponent {
     this.http.blockFriend(this.currentFriendName).subscribe({
       next: ({ msg }: any) => {
         this.notificationComponent.showNotification(msg)
+        this.headerComponent.removeFriendOfArray(this.currentFriendName);
       },
       error: ({ error }) =>{
         this.notificationComponent.showNotification(error.message)
       }
     })
 
-    this.headerComponent.removeFriendOfArray(this.currentFriendName);
   }
   
   unfriend(username: string){
     this.http.unfriend(username).subscribe({
       next: ({ msg }: any) => {
         this.notificationComponent.showNotification(msg)
+        this.headerComponent.removeFriendOfArray(username);
       },
       error: ({ error }) =>{
         this.notificationComponent.showNotification(error.message)
       }
     })
-    this.headerComponent.removeFriendOfArray(username);
   }
   
   editNote(event: any){
