@@ -96,11 +96,9 @@ export class HeaderComponent {
   onSubmit(){
     this.http.addFriend(this.searchFriendsForm.value.friendName).subscribe({
       next: ({msg}: any) =>{
-        console.log(msg)
         this.notificationComponent.showNotification(msg)
       },
       error: ({error}) =>{
-        console.log(error)
         this.notificationComponent.showNotification(error.message)
       }
     })

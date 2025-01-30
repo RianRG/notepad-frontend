@@ -23,7 +23,6 @@ export class HttpService {
           obs.complete()
         },
         error: (err) =>{
-          console.log(err)
           obs.next(false);
           obs.complete()
         }

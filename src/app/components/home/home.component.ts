@@ -39,7 +39,6 @@ export class HomeComponent {
           if(!this.errorClass){
             this.errorMsg = e.error.message
             this.errorClass = true;
-            console.log(e.error.message)
           }
         }
       })                  

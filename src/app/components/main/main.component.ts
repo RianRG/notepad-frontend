@@ -45,11 +45,9 @@ export class MainComponent {
   }
 
   onSubmit(){
-    this.loadingService.setLoading(true)
     if(this.currentNoteId){
       this.http.updateNote(this.currentNoteId, this.noteForm.value).subscribe((r: any) =>{
         this.notes = this.notes.map(note =>{
-          console.log(this.currentNoteId)
           if(note.id === this.currentNoteId){
             return {
               id: note.id,
@@ -76,9 +74,6 @@ export class MainComponent {
       this.currentNoteId = null;
     } 
     this.formClass = !this.formClass
-    setTimeout(() =>{
-      this.loadingService.setLoading(false);
-    }, 600)
   }
 
   toggleForm(){
