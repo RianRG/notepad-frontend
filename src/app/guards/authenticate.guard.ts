@@ -7,9 +7,10 @@ import { LoadingService } from '../services/loading.service';
 export const authenticateGuard: CanActivateFn = (route, state) => {
   const loadingService = inject(LoadingService)
   const http = inject(HttpService);
+  loadingService.setLoading(true);
   return http.isAuthenticated().pipe(
     tap(isAuth => {
-      // console.log('ok')
+      loadingService.setLoading(false);
     }),
 
   );

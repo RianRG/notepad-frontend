@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { GetProfileDTO } from '../../types/responseDTO';
@@ -7,6 +7,7 @@ import { HeaderComponent } from '../header/header.component';
 import { NotificationComponent } from '../notification/notification.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmPopupComponent } from '../confirm-popup/confirm-popup.component';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,6 +16,8 @@ import { ConfirmPopupComponent } from '../confirm-popup/confirm-popup.component'
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
+  loadingService = inject(LoadingService);
+
   currentNoteId!: string
   currentFriendName!: string
   formClass: boolean = false;
@@ -40,6 +43,7 @@ export class ProfileComponent {
 
   ngOnInit(): void{
     this.route.params.subscribe((params: any) =>{
+      this.loadingService.setLoading(true)
       this.currentFriendName = this.route.snapshot.paramMap.get('username')!;
       this.http.getStudentProfile(this.route.snapshot.paramMap.get('username')!).subscribe({
       
@@ -47,6 +51,9 @@ export class ProfileComponent {
         error: ({error}) => {
           if(error.message=== 'Student not found!')
             this.errorMessage = error.message
+        },
+        complete: () =>{
+          this.loadingService.setLoading(false);
         }
       })
     })

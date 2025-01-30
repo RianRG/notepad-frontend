@@ -34,8 +34,15 @@ export class MainComponent {
   
   
   ngOnInit(): void{
-    this.http.getSession().subscribe((msg: any) =>{
-      this.studentInfos = msg.student
+    this.loadingService.setLoading(true)
+    this.http.getSession().subscribe({
+      next: (msg: any) => {
+        this.studentInfos = msg.student
+      }
+      ,
+      complete: () =>{
+        this.loadingService.setLoading(false);
+      }
     })
 
     this.http.getNotes().subscribe((msg: any) =>{
@@ -100,7 +107,6 @@ export class MainComponent {
   }
 
   deleteNote(){
-    this.loadingService.setLoading(true)
 
     // saving currentNoteId on a temporary variable because of context conflicts
     const currentNoteId = this.currentNoteId;
@@ -113,7 +119,6 @@ export class MainComponent {
     })
     this.formClass = !this.formClass
     this.currentNoteId = null;
-    this.loadingService.setLoading(false)
   }
   @ViewChild(ConfirmPopupComponent) confirmPopupComponent!: ConfirmPopupComponent;
   togglePopup(){
