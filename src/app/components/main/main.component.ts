@@ -39,14 +39,13 @@ export class MainComponent {
       next: (msg: any) => {
         this.studentInfos = msg.student
       }
-      ,
+    })
+
+    this.http.getNotes().subscribe({
+      next: (msg: any) => this.notes = msg,
       complete: () =>{
         this.loadingService.setLoading(false);
       }
-    })
-
-    this.http.getNotes().subscribe((msg: any) =>{
-      this.notes = msg;
     })
 
   }
