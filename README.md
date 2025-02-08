@@ -13,3 +13,5 @@ Run the following command to run the frontend (Make sure you're running backend 
 ng serve
 ```
 deploy frontend: https://notepad-frontend-i921.onrender.com/register
+
+Thank you <3
